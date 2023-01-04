@@ -11,5 +11,11 @@
         <p><a href="rest/mandelbrot/asynch?xMin=-0.8291845582180375&xMax=-0.8291836641627192&yMin=-0.23714218047731717&yMax=-0.23714128642199894&iterations=500">Generate Sample Asynchronously</a></p>
         <p><a href="rest/mandelbrot/cache/0/state">Check state</a></p>
         <p><a href="rest/mandelbrot/cache/0/video">Get Video</a></p>
+        <p>Delete Video: <tt>curl -X DELETE http://localhost:8080/MandelbrotVideo/rest/mandelbrot/cache/0</tt></p>
+        <h1>Mandelbrot Video Interactive</h1>
+        <mandelbrot-selector xmin="-2" xmax="2" ymin="-2" ymax="2" iterations=500 dimension="1000"/>
+        <!--<mandelbrot-selector xmin="-0.8291845582180375" xmax="-0.8291836641627192" ymin="-0.23714218047731717" ymax="-0.23714128642199894" iterations=500 dimension="1000"/>-->
+        
+        <script src="js/preview.js"></script>
     </body>
 </html>
