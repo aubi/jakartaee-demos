@@ -16,6 +16,8 @@ import javax.imageio.ImageIO;
 @Stateless
 public class MandelbrotPictureService {
 
+    Logger log = Logger.getLogger(MandelbrotPictureService.class.getName());
+
     public byte[] paintManderlbrotToPNG(double xMin, double xMax, double yMin, double yMax, int dimension, int iterations, int bailout) {
         BufferedImage image = this.paintManderlbrot(xMin, xMax, yMin, yMax, dimension, iterations, bailout);
         ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -29,6 +31,7 @@ public class MandelbrotPictureService {
     }
 
     public BufferedImage paintManderlbrot(double xMin, double xMax, double yMin, double yMax, int dimension, int iterations, int bailout) {
+        log.severe(() -> "painting mandelbrot " + xMin + " - " + xMax + " x " + yMin + " - " + yMax + " started");
         double dX = xMax - xMin;
         double dY = yMax - yMin;
         BufferedImage image = new BufferedImage(dimension, dimension, BufferedImage.TYPE_INT_RGB);
@@ -51,6 +54,7 @@ public class MandelbrotPictureService {
                 image.setRGB(px, py, (255 - color) * 256 * 256 + (255 - color) * 256 + 255);
             }
         }
+        log.severe("painting mandelbrot " + xMin + " - " + xMax + " x " + yMin + " - " + yMax + " finished");
         return image;
     }
 
