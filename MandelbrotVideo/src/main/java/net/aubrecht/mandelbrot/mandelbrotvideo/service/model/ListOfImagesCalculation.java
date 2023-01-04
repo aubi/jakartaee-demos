@@ -22,7 +22,7 @@ public class ListOfImagesCalculation {
     private long id;
     private List<Future<byte[]>> imageFutures = Collections.synchronizedList(new ArrayList<>());
     private Future<File> finalProcessing;
-
+    private int renderedImageProgress = -1;
 
     public ListOfImagesCalculation() {
         id = idGenerator.getAndIncrement();
@@ -46,6 +46,14 @@ public class ListOfImagesCalculation {
 
     public long getId() {
         return id;
+    }
+
+    public int getRenderedImageProgress() {
+        return renderedImageProgress;
+    }
+
+    public void setRenderedImageProgress(int renderedImageProgress) {
+        this.renderedImageProgress = renderedImageProgress;
     }
 
 }
