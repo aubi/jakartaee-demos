@@ -10,7 +10,7 @@ class MandelbrotSelector extends HTMLElement {
 
     constructor() {
         super();
-        this.attachShadow({
+        this.shadow = this.attachShadow({
             mode: 'open',
             delegateFocus: true
         });
@@ -48,10 +48,10 @@ class MandelbrotSelector extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
+        this.recreate();
     }
 
-    render() {
+    recreate() {
         console.log("MandelbrotPicture.render",this.xmin,this.xmax);
         var html = `
             <p>x: ${this.xmin} &ndash; ${this.xmax}, y: ${this.ymin} &ndash; ${this.ymax}</p>
@@ -59,7 +59,7 @@ class MandelbrotSelector extends HTMLElement {
         if(this.generatinginfo === null) {
             html += `
                 <p><button onclick='this.getRootNode().host.generateVideo(event,this.getRootNode().host)'>Generate Video!</button></p>
-                <img onclick='this.getRootNode().host.handleClick(event)' src='/MandelbrotPicture/rest/mandelbrot?xMin=${this.xmin}&xMax=${this.xmax}&yMin=${this.ymin}&yMax=${this.ymax}&iterations=${this.iterations}&dimension=${this.dimension}&bailout=${this.bailout}' />
+                <img width=${this.dimension} height=${this.dimension} onclick='this.getRootNode().host.handleClick(event)' src='/MandelbrotPicture/rest/mandelbrot?xMin=${this.xmin}&xMax=${this.xmax}&yMin=${this.ymin}&yMax=${this.ymax}&iterations=${this.iterations}&dimension=${this.dimension}&bailout=${this.bailout}' />
                 <p>Click to image to zoom in, Shifl+click to zoom out.</p>
             `;
         } else {
@@ -67,7 +67,7 @@ class MandelbrotSelector extends HTMLElement {
                 // still generating
                 html += `
                     <p>Generating video #${this.generatinginfo.id}, rendering images: ${this.generatinginfo.status}, processing video: ${this.generatinginfo.renderingInfo}</p>
-                    <p> Images:  
+                    <p>Images:  
                 `;
                 var processed = this.generatinginfo.renderedImageProgress;
                 // &#8203; is zero-width breakable space
@@ -86,7 +86,7 @@ class MandelbrotSelector extends HTMLElement {
                 `;
             }
         }
-        this.shadowRoot.innerHTML = html;
+        this.shadow.innerHTML = html;
     }
     
     handleClick(event) {
@@ -109,7 +109,7 @@ class MandelbrotSelector extends HTMLElement {
         this.xmax = centerx + newDx;
         this.ymin = centery - newDy;
         this.ymax = centery + newDy;
-        this.render();
+        this.recreate();
     }
     
     generateVideo(event, caller) {
@@ -144,7 +144,7 @@ class MandelbrotSelector extends HTMLElement {
     
     updateGeneratingInfo(data, caller) {
         this.generatinginfo = data;
-        this.render();
+        this.recreate();
         if(data.finalFinished === false) {
             setTimeout(function() {caller.fetchProcessingInfo(data.id, caller)}, 1000);
         }
