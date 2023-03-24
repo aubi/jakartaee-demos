@@ -1,0 +1,22 @@
+version: '3'
+services:
+
+  picture:
+    image: mandelbrot-picture
+    container_name: mandelbrot-picture
+    restart: unless-stopped
+    ports:
+      - "9080:8080" # web
+      - "9048:4848" # admin
+      - "9009:9009" # debug
+
+  video:
+    image: mandelbrot-video
+    container_name: mandelbrot-video
+    restart: unless-stopped
+    depends_on:
+      - picture
+    ports:
+      - "9180:8080" # web
+      - "9148:4848" # admin
+      - "9109:9009" # debug

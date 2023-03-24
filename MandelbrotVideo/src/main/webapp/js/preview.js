@@ -59,7 +59,7 @@ class MandelbrotSelector extends HTMLElement {
         if(this.generatinginfo === null) {
             html += `
                 <p><button onclick='this.getRootNode().host.generateVideo(event,this.getRootNode().host)'>Generate Video!</button></p>
-                <img width=${this.dimension} height=${this.dimension} onclick='this.getRootNode().host.handleClick(event)' src='/MandelbrotPicture/rest/mandelbrot?xMin=${this.xmin}&xMax=${this.xmax}&yMin=${this.ymin}&yMax=${this.ymax}&iterations=${this.iterations}&dimension=${this.dimension}&bailout=${this.bailout}' />
+                <img width=${this.dimension} height=${this.dimension} onclick='this.getRootNode().host.handleClick(event)' src='rest/v1/mandelbrot/picture?xMin=${this.xmin}&xMax=${this.xmax}&yMin=${this.ymin}&yMax=${this.ymax}&iterations=${this.iterations}&dimension=${this.dimension}&bailout=${this.bailout}' />
                 <p>Click to image to zoom in, Shifl+click to zoom out.</p>
             `;
         } else {
@@ -79,7 +79,7 @@ class MandelbrotSelector extends HTMLElement {
                     <p>Video is ready!</p>
                     <p>
                         <video width="${this.dimension}" height="${this.dimension}" controls>
-                        <source src="rest/mandelbrot/cache/${this.generatinginfo.id}/video" type="video/mp4">
+                        <source src="rest/v1/mandelbrot/video/cache/${this.generatinginfo.id}/video" type="video/mp4">
                       Your browser does not support the video tag.
                       </video> 
                     </p>
@@ -113,7 +113,7 @@ class MandelbrotSelector extends HTMLElement {
     }
     
     generateVideo(event, caller) {
-        fetch(`rest/mandelbrot/asynch?xMin=${this.xmin}&xMax=${this.xmax}&yMin=${this.ymin}&yMax=${this.ymax}&iterations=${this.iterations}&dimension=${this.dimension}&bailout=${this.bailout}`).then(function (response) {
+        fetch(`rest/v1/mandelbrot/video/asynch?xMin=${this.xmin}&xMax=${this.xmax}&yMin=${this.ymin}&yMax=${this.ymax}&iterations=${this.iterations}&dimension=${this.dimension}&bailout=${this.bailout}`).then(function (response) {
             // The API call was successful!
             return response.json();
         }).then(function (data) {
@@ -128,7 +128,7 @@ class MandelbrotSelector extends HTMLElement {
     }
     
     fetchProcessingInfo(id, caller) {
-        fetch(`rest/mandelbrot/cache/${id}/state`).then(function (response) {
+        fetch(`rest/v1/mandelbrot/video/cache/${id}/state`).then(function (response) {
             // The API call was successful!
             return response.json();
         }).then(function (data) {

@@ -1,25 +1,28 @@
-package net.aubrecht.mandelbrot.picture.resources;
+package net.aubrecht.mandelbrot.mandelbrotvideo.resources;
 
 import java.io.ByteArrayInputStream;
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
-import net.aubrecht.mandelbrot.picture.service.MandelbrotPictureService;
+import net.aubrecht.mandelbrot.mandelbrotvideo.service.MandelbrotPictureClient;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 /**
- * Paint a piece of Mandelbrot image.
+ * Forward the request to paint a piece of Mandelbrot image.
+ *
  * @author aubi
  */
 @Path("v1/mandelbrot/picture")
 public class MandelbrotPictureResource {
 
-    @EJB
-    private MandelbrotPictureService mandelbrotService;
-    
+    @Inject
+    @RestClient
+    private MandelbrotPictureClient mandelbrotPictureClient;
+
     @GET
     @Produces("image/png")
     public Response draw(
@@ -30,7 +33,6 @@ public class MandelbrotPictureResource {
             @QueryParam("dimension") @DefaultValue("1000") int dimension,
             @QueryParam("iterations") @DefaultValue("500") int iterations,
             @QueryParam("bailout") @DefaultValue("4") int bailout) {
-        byte[] image = mandelbrotService.paintManderlbrotToPNG(xMin, xMax, yMin, yMax, dimension, iterations, bailout);
-        return Response.ok(new ByteArrayInputStream(image)).build();
+        return Response.ok(new ByteArrayInputStream(mandelbrotPictureClient.draw(xMin, xMax, yMin, yMax, dimension, iterations, bailout))).build();
     }
 }

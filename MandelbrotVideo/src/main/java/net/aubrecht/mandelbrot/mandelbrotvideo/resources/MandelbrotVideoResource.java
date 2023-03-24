@@ -33,7 +33,7 @@ import net.aubrecht.mandelbrot.mandelbrotvideo.service.model.ListOfImagesCalcula
  *
  * @author aubi
  */
-@Path("mandelbrot")
+@Path("v1/mandelbrot/video")
 public class MandelbrotVideoResource {
 
     @EJB
@@ -79,7 +79,7 @@ public class MandelbrotVideoResource {
         });
     }
 
-    @Path("/cache/{id}")
+    @Path("cache/{id}")
     @DELETE
     public Response deleteCache(@PathParam("id") long id) {
         ListOfImagesCalculation calculation = videosCache.get(id);
@@ -90,7 +90,7 @@ public class MandelbrotVideoResource {
         return Response.noContent().build();
     }
 
-    @Path("/cache/{id}/state")
+    @Path("cache/{id}/state")
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response getStatus(@PathParam("id") long id) {
