@@ -17,7 +17,7 @@ public interface MandelbrotPictureClient {
 
     @GET
     @Produces("image/png")
-    @Path("mandelbrot")
+    @Path("v1/mandelbrot/picture")
     byte[] draw(
             @QueryParam("xMin") double xMin,
             @QueryParam("xMax") double xMax,
