@@ -1,6 +1,7 @@
 package net.aubrecht.mandelbrot.picture.resources;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import javax.ejb.EJB;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -30,7 +31,11 @@ public class MandelbrotPictureResource {
             @QueryParam("dimension") @DefaultValue("1000") int dimension,
             @QueryParam("iterations") @DefaultValue("500") int iterations,
             @QueryParam("bailout") @DefaultValue("4") int bailout) {
-        byte[] image = mandelbrotService.paintManderlbrotToPNG(xMin, xMax, yMin, yMax, dimension, iterations, bailout);
-        return Response.ok(new ByteArrayInputStream(image)).build();
+        try {
+            byte[] image = mandelbrotService.paintManderlbrotToPNG(xMin, xMax, yMin, yMax, dimension, iterations, bailout);
+            return Response.ok(new ByteArrayInputStream(image)).build();
+        } catch (IOException ex) {
+            return Response.status(500, "Internal error: " + ex.getMessage()).build();
+        }
     }
 }

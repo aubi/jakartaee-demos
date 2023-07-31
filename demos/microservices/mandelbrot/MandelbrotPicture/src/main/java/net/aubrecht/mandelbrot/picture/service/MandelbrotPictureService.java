@@ -18,14 +18,14 @@ public class MandelbrotPictureService {
 
     Logger log = Logger.getLogger(MandelbrotPictureService.class.getName());
 
-    public byte[] paintManderlbrotToPNG(double xMin, double xMax, double yMin, double yMax, int dimension, int iterations, int bailout) {
+    public byte[] paintManderlbrotToPNG(double xMin, double xMax, double yMin, double yMax, int dimension, int iterations, int bailout) throws IOException {
         BufferedImage image = this.paintManderlbrot(xMin, xMax, yMin, yMax, dimension, iterations, bailout);
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         try {
             ImageIO.write(image, "png", os);
         } catch (IOException ex) {
             Logger.getLogger(MandelbrotPictureService.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
-            return new byte[0];
+            throw new IOException("Unable to save image to PNG format: " + ex.getMessage(), ex);
         }
         return os.toByteArray();
     }
@@ -54,11 +54,11 @@ public class MandelbrotPictureService {
                 image.setRGB(px, py, (255 - color) * 256 * 256 + (255 - color) * 256 + 255);
             }
         }
-        log.severe("painting mandelbrot " + xMin + " - " + xMax + " x " + yMin + " - " + yMax + " finished");
+        log.severe(() -> "painting mandelbrot " + xMin + " - " + xMax + " x " + yMin + " - " + yMax + " finished");
         return image;
     }
 
-    private double calcMandelPoint(double x, double y, int iterations, int bailout) {
+    public double calcMandelPoint(double x, double y, int iterations, int bailout) {
         double oldZX = 0;
         double oldZY = 0;
         for (int iter = 0; iter < iterations; iter++) {
