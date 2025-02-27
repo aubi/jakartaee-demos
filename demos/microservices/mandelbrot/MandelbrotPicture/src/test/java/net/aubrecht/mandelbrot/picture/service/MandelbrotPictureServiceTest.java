@@ -10,8 +10,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
 /**
+ * Verify calculations of some points.
  *
- * @author aubi
+ * @author Petr Aubrecht
  */
 //@ExtendWith(WeldJunit5Extension.class)
 public class MandelbrotPictureServiceTest {

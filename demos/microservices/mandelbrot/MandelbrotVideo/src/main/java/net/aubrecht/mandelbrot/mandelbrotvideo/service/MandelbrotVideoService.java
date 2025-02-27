@@ -27,7 +27,7 @@ import org.jcodec.common.model.Rational;
 /**
  * Service for asynchronous generation of mandelbrot video.
  *
- * @author aubi
+ * @author Petr Aubrecht
  */
 @Stateless
 public class MandelbrotVideoService {

@@ -31,7 +31,7 @@ import net.aubrecht.mandelbrot.mandelbrotvideo.service.model.ListOfImagesCalcula
 /**
  * Generate video of Mandelbrot image.
  *
- * @author aubi
+ * @author Petr Aubrecht
  */
 @Path("v1/mandelbrot/video")
 public class MandelbrotVideoResource {

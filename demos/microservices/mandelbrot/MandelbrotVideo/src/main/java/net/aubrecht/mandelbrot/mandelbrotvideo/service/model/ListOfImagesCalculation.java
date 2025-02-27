@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Contains list of futures to complete whole video.
  *
- * @author aubi
+ * @author Petr Aubrecht
  */
 public class ListOfImagesCalculation {
 

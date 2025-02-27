@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 /**
  * Draw an image of Mandelbrot fractal.
  *
- * @author aubi
+ * @author Petr Aubrecht
  */
 @Stateless
 public class MandelbrotPictureService {

@@ -6,8 +6,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 
 /**
+ * Provider of test data.
  *
- * @author aubi
+ * @author Petr Aubrecht
  */
 public class MandelbrotTestArgumentProvider implements ArgumentsProvider {
 

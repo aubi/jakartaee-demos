@@ -9,7 +9,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 /**
  *
- * @author aubi
+ * @author Petr Aubrecht
  */
 @RegisterRestClient(baseUri = "http://localhost:8080/MandelbrotPicture/rest/")
 @Path("")

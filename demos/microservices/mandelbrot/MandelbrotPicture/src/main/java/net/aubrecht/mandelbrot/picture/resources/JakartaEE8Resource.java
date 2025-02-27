@@ -7,7 +7,7 @@ import jakarta.ws.rs.core.Response;
 /**
  * Just a test REST.
  *
- * @author aubi
+ * @author Petr Aubrecht
  */
 @Path("ping")
 public class JakartaEE8Resource {

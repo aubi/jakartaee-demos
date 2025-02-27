@@ -1,8 +1,9 @@
 package net.aubrecht.mandelbrot.picture.service;
 
 /**
+ * Test parameters.
  *
- * @author aubi
+ * @author Petr Aubrecht
  */
 public class MandelbrotPointArgument {
 

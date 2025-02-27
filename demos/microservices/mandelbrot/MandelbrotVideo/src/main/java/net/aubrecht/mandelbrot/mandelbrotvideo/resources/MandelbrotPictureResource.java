@@ -14,7 +14,7 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 /**
  * Forward the request to paint a piece of Mandelbrot image.
  *
- * @author aubi
+ * @author Petr Aubrecht
  */
 @Path("v1/mandelbrot/picture")
 public class MandelbrotPictureResource {

@@ -12,7 +12,7 @@ import net.aubrecht.mandelbrot.mandelbrotvideo.service.model.ListOfImagesCalcula
 /**
  * Cache for generated videos.
  *
- * @author aubi
+ * @author Petr Aubrecht
  */
 @Singleton
 public class VideosCache {

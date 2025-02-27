@@ -13,7 +13,8 @@ import net.aubrecht.mandelbrot.picture.service.MandelbrotPictureService;
 
 /**
  * Paint a piece of Mandelbrot image.
- * @author aubi
+ *
+ * @author Petr Aubrecht
  */
 @Path("v1/mandelbrot/picture")
 public class MandelbrotPictureResource {
