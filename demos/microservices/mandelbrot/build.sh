@@ -13,3 +13,4 @@ echo "**** Open page http://localhost:9180/MandelbrotVideo-1.0-SNAPSHOT/"
 
 docker-compose up --remove-orphans
 
+docker-compose down
