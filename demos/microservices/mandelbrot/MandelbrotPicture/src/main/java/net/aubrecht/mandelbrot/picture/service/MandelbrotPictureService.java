@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.Stateless;
+import jakarta.ejb.Stateless;
 import javax.imageio.ImageIO;
 
 /**
