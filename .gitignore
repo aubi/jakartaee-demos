@@ -1,2 +1,4 @@
 **/target
-/demos/microservices/mandelbrot/MandelbrotPicture/nbproject/
+nb-configuration.xml
+nbactions.xml
+nbproject/
