@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html">
+    <h:head>
+        <title>Sample Edge Controller</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+    <h:body>
+        <h1>Sample Edge Controller</h1>
+        <p>This program runs on an edge, inside a factory, collecting data and calling processing services.</p>
+        <p>Data collection must be reliable &ndash; setup and forget.</p>
+        <p><a href="http://localhost:4848/metrics">metrics</a></p>
+        <p><a href="api/data/ping">ping</a></p>
+        <p><a href="api/data/clear">clear</a></p>
+        <p><a href="http://localhost:9090/query">Prometheus</a></p>
+        <p><a href="http://localhost:3000/">Grafana</a></p>
+        
+        <table>
+            <tr>
+                <th>Metrics</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Current state number of requests</td>
+                <td>#{appStateBean.dataReceived}</td>
+            </tr>
+            <tr>
+                <td>Current size of cache</td>
+                <td>#{appStateBean.cacheSize}</td>
+            </tr>
+            <tr>
+                <td>Number of started minings:</td>
+                <td>#{appStateBean.dataMiningStarted}</td>
+            </tr>
+            <tr>
+                <td>Number of finished minings:</td>
+                <td>#{appStateBean.dataMiningFinished}</td>
+            </tr>
+        </table>
+    </h:body>
+</html>
