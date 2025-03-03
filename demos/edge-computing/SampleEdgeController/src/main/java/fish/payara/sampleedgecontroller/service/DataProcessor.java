@@ -1,13 +1,14 @@
 package fish.payara.sampleedgecontroller.service;
 
 import fish.payara.sampleedgecontroller.model.DataRow;
-import jakarta.ejb.Singleton;
+import jakarta.ejb.Stateless;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.net.HttpURLConnection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,13 +20,22 @@ import java.util.logging.Logger;
  *
  * @author Petr Aubrecht
  */
-@Singleton
+@Stateless
 public class DataProcessor {
     private static final AtomicLong counterData = new AtomicLong(0);
     private static final AtomicLong counterDataMiningStarted = new AtomicLong(0);
     private static final AtomicLong counterDataMiningFinished = new AtomicLong(0);
     private static final Map<Integer, List<DataRow>> cache = new ConcurrentHashMap<>();
     private static final Logger log = Logger.getLogger(DataProcessor.class.getName());
+
+    public void storeDataToCache(DataRow data) {
+        List<DataRow> existingData = cache.get(data.getSourceId());
+        if (existingData == null) {
+            existingData = new ArrayList<>();
+            cache.put(data.getSourceId(), existingData);
+        }
+        existingData.add(data);
+    }
 
     public void sendDataToMiner(String dataMineURL, List<DataRow> data) {
         // send to data miner

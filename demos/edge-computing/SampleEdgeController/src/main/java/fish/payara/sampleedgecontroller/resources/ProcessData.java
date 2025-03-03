@@ -13,7 +13,6 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -72,12 +71,7 @@ public class ProcessData {
         if (localCounter % 10_000 == 0) {
             log.info(() -> "Processing data #%,d, source id %,d".formatted(localCounter, data.getSourceId()));
         }
-        List<DataRow> existingData = dataProcessor.cacheGet(data.getSourceId());
-        if (existingData == null) {
-            existingData = new ArrayList<>();
-            dataProcessor.cachePut(data.getSourceId(), existingData);
-        }
-        existingData.add(data);
+        dataProcessor.storeDataToCache(data);
         return Response
                 .ok("Data cached for " + data.getSourceId())
                 .build();
