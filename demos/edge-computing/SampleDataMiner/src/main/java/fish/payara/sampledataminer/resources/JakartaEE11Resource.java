@@ -7,7 +7,7 @@ import jakarta.ws.rs.core.Response;
 
 @Path("ping")
 @RequestScoped
-public class JakartaEE10Resource {
+public class JakartaEE11Resource {
     
     @GET
     public Response ping(){
