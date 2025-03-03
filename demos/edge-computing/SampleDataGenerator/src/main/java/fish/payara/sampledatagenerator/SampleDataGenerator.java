@@ -165,6 +165,7 @@ public class SampleDataGenerator {
                 //System.out.println("Response Body: " + response.body());
 
                 // there is a delay between data sent
+                // DEMO: remove this sleep for light speed!
                 //Thread.sleep(Duration.ofMillis(100 + rnd.nextLong(30)));
             }
 
