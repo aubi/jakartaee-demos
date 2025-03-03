@@ -16,27 +16,30 @@
         <p><a href="http://localhost:9090/query">Prometheus</a></p>
         <p><a href="http://localhost:3000/">Grafana</a></p>
         
-        <table>
-            <tr>
-                <th>Metrics</th>
-                <th>Value</th>
-            </tr>
-            <tr>
-                <td>Current state number of requests</td>
-                <td>#{appStateBean.dataReceived}</td>
-            </tr>
-            <tr>
-                <td>Current size of cache</td>
-                <td>#{appStateBean.cacheSize}</td>
-            </tr>
-            <tr>
-                <td>Number of started minings:</td>
-                <td>#{appStateBean.dataMiningStarted}</td>
-            </tr>
-            <tr>
-                <td>Number of finished minings:</td>
-                <td>#{appStateBean.dataMiningFinished}</td>
-            </tr>
-        </table>
+        <h:form id="form-stats">
+            <table>
+                <tr>
+                    <th>Metrics</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Current state number of requests</td>
+                    <td>#{appStateBean.dataReceived}</td>
+                </tr>
+                <tr>
+                    <td>Current size of cache</td>
+                    <td>#{appStateBean.cacheSize}</td>
+                </tr>
+                <tr>
+                    <td>Number of started minings:</td>
+                    <td>#{appStateBean.dataMiningStarted}</td>
+                </tr>
+                <tr>
+                    <td>Number of finished minings:</td>
+                    <td>#{appStateBean.dataMiningFinished}</td>
+                </tr>
+            </table>
+            <div><h:commandButton value="Refresh" action="#{appStateBean.refresh}"/></div>
+        </h:form>
     </h:body>
 </html>
