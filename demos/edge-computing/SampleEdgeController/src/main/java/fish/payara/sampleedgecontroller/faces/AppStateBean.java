@@ -1,4 +1,4 @@
-package fish.payara.sampleedgecontroller.jsf;
+package fish.payara.sampleedgecontroller.faces;
 
 import fish.payara.sampleedgecontroller.service.DataProcessor;
 import jakarta.ejb.EJB;
@@ -33,5 +33,7 @@ public class AppStateBean {
         return dataProcessor.getCounterDataMiningFinished();
     }
 
-
+    public void refresh() {
+        // dummy, nothing to do
+    }
 }
