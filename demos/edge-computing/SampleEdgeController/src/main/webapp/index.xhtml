@@ -10,10 +10,10 @@
         <h1>Sample Edge Controller</h1>
         <p>This program runs on an edge, inside a factory, collecting data and calling processing services.</p>
         <p>Data collection must be reliable &ndash; setup and forget.</p>
-        <p><a href="http://localhost:4848/metrics">metrics</a></p>
+        <p><a href="http://localhost:4848/metrics">MicroProfile Metrics</a></p>
         <p><a href="api/data/ping">ping</a></p>
         <p><a href="api/data/clear">clear</a></p>
-        <p><a href="http://localhost:9090/query">Prometheus</a></p>
+        <p><a href="http://localhost:9090/">Prometheus</a></p>
         <p><a href="http://localhost:3000/">Grafana</a></p>
         
         <h:form id="form-stats">
@@ -39,7 +39,7 @@
                     <td>#{appStateBean.dataMiningFinished}</td>
                 </tr>
             </table>
-            <div><h:commandButton value="Refresh" action="#{appStateBean.refresh}"/></div>
+            <div><h:commandButton value="Refresh" action="#{appStateBean.refresh}" immediate="true"/></div>
         </h:form>
     </h:body>
 </html>
