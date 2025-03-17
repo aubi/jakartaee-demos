@@ -101,9 +101,9 @@ public class SampleDataGenerator {
         String urlData = baseUrl + "/data";
         String urlProcess = urlData + "/process";
         try (HttpClient client = HttpClient.newBuilder()
-        .executor(executor)
-        .version(HttpClient.Version.HTTP_1_1)
-                        .build()) {
+                .executor(executor)
+                .version(HttpClient.Version.HTTP_1_1/*HTTP_2*/)
+                .build()) {
 
             ObjectMapper objectMapper = new ObjectMapper();
 
