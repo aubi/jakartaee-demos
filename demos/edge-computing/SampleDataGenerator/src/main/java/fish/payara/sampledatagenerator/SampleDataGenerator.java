@@ -31,7 +31,6 @@ public class SampleDataGenerator {
     private static final Random rnd = new Random();
 
     public static void main(String[] args) {
-        System.out.println("Hi, I'm robot Karel and I'm producing data about my motor!");
         if (args.length < 2) {
             System.out.println("Usage java -jar SampleDataGenerator.jar WORKERS PATH URL");
             System.out.println("WORKERS number of threads to produce data");
@@ -43,12 +42,12 @@ public class SampleDataGenerator {
     }
 
     private static void createWorkers(int workers, String pathRoot, String baseUrl) {
-//        try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
-        try (ExecutorService executor = Executors.newFixedThreadPool(workers)) {
+        try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
+//        try (ExecutorService executor = Executors.newFixedThreadPool(workers)) {
             for (int i = 0; i < workers; i++) {
                 final int workerId = i;
                 executor.submit(() -> generateData(workerId, pathRoot, baseUrl));
-                System.out.println("Robot #" + i + " started.");
+                System.out.println("Hi, I'm robot Karel #" + i + " and I'm producing data about my motor!");
             }
         }
     }
@@ -76,6 +75,7 @@ public class SampleDataGenerator {
         File[] csvs = selectedDir.listFiles((File dir, String name) -> name.toLowerCase().endsWith("csv"));
         File selectedFile = csvs[rnd.nextInt(csvs.length)];
         try (Scanner scanner = new Scanner(selectedFile)) {
+            System.out.println("Reading file " + selectedFile);
             List<DataRow> data = new ArrayList<>();
             scanner.nextLine(); // skip header line
             while (scanner.hasNext()) {
@@ -90,6 +90,7 @@ public class SampleDataGenerator {
                 );
                 data.add(dataRow);
             }
+            System.out.println("Size of data: " + data.size());
             return data;
         } catch (FileNotFoundException ex) {
             throw new IOException("Unable to read file " + selectedFile.getAbsolutePath(), ex);
@@ -187,7 +188,7 @@ public class SampleDataGenerator {
                 }
             }
 
-        } catch (IOException | InterruptedException | URISyntaxException e) {
+        } catch (IOException | InterruptedException | URISyntaxException | Error e) {
             //throw new IOException("Unable to send data to " + url, e);
             System.err.println("Error: " + e.getMessage());
             try {
